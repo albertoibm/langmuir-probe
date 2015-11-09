@@ -1,0 +1,38 @@
+eeschema (2013-may-18)-stable  >> Creation date: Mon 09 Nov 2015 01:51:34 AM CET
+#Cmp ( order = Reference )
+| Floating1  12          
+| Floating2  12          
+| OpAmp1     LM321       
+| OpAmp2     LM321       
+| P1         CONNECTOR   
+| P2         CONNECTOR   
+| P3         CONNECTOR   
+| R1         1M          
+| R2         1M          
+| R3         1M          
+| R'1        910         
+| R(1-1/n)1  1M          
+| R/n1       910         
+| Supply1    12          
+| Supply2    12          
+#End Cmp
+
+#Cmp ( order = Value )
+| 12           Floating1 
+| 12           Floating2 
+| LM321        OpAmp1    
+| LM321        OpAmp2    
+| CONNECTOR    P1        
+| CONNECTOR    P2        
+| CONNECTOR    P3        
+| 1M           R1        
+| 1M           R2        
+| 1M           R3        
+| 910          R'1       
+| 1M           R(1-1/n)1 
+| 910          R/n1      
+| 12           Supply1   
+| 12           Supply2   
+#End Cmp
+
+#End List

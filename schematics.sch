@@ -1,0 +1,316 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:schematics-cache
+EELAYER 27 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Langmuir probe amplifier"
+Date "9 nov 2015"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L R R2
+U 1 1 563B2818
+P 5700 3200
+F 0 "R2" V 5780 3200 40  0000 C CNN
+F 1 "1M" V 5707 3201 40  0000 C CNN
+F 2 "~" V 5630 3200 30  0000 C CNN
+F 3 "~" H 5700 3200 30  0000 C CNN
+	1    5700 3200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R'1
+U 1 1 563BE484
+P 5950 4200
+F 0 "R'1" V 6030 4200 40  0000 C CNN
+F 1 "910" V 5957 4201 40  0000 C CNN
+F 2 "~" V 5880 4200 30  0000 C CNN
+F 3 "~" H 5950 4200 30  0000 C CNN
+	1    5950 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 563BE48A
+P 4450 2550
+F 0 "R1" V 4530 2550 40  0000 C CNN
+F 1 "1M" V 4457 2551 40  0000 C CNN
+F 2 "~" V 4380 2550 30  0000 C CNN
+F 3 "~" H 4450 2550 30  0000 C CNN
+	1    4450 2550
+	0    1    1    0   
+$EndComp
+Text GLabel 3100 3300 0    60   Input ~ 0
+V_B
+Text GLabel 3250 3100 0    60   Input ~ 0
+Probe
+Wire Wire Line
+	4700 2550 4950 2550
+Wire Wire Line
+	3100 3300 4100 3300
+Connection ~ 3950 3100
+$Comp
+L R R(1-1/n)1
+U 1 1 563BE5CB
+P 5250 3700
+F 0 "R(1-1/n)1" V 5330 3700 40  0000 C CNN
+F 1 "1M" V 5257 3701 40  0000 C CNN
+F 2 "~" V 5180 3700 30  0000 C CNN
+F 3 "~" H 5250 3700 30  0000 C CNN
+	1    5250 3700
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3950 3300 3950 4450
+Connection ~ 3950 3300
+$Comp
+L R R/n1
+U 1 1 563BE5EA
+P 6300 4200
+F 0 "R/n1" V 6380 4200 40  0000 C CNN
+F 1 "910" V 6307 4201 40  0000 C CNN
+F 2 "~" V 6230 4200 30  0000 C CNN
+F 3 "~" H 6300 4200 30  0000 C CNN
+	1    6300 4200
+	1    0    0    -1  
+$EndComp
+Connection ~ 6300 3700
+Wire Wire Line
+	5950 3200 5950 3950
+Connection ~ 5950 3500
+$Comp
+L R R3
+U 1 1 563BE698
+P 6900 2950
+F 0 "R3" V 6980 2950 40  0000 C CNN
+F 1 "1M" V 6907 2951 40  0000 C CNN
+F 2 "~" V 6830 2950 30  0000 C CNN
+F 3 "~" H 6900 2950 30  0000 C CNN
+	1    6900 2950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6300 2950 6650 2950
+Wire Wire Line
+	4200 2550 3950 2550
+Wire Wire Line
+	3250 3100 4100 3100
+Wire Wire Line
+	3950 2550 3950 3100
+$Comp
+L BATTERY Floating1
+U 1 1 563F76BD
+P 3650 4450
+F 0 "Floating1" H 3650 4650 50  0000 C CNN
+F 1 "12" H 3650 4260 50  0000 C CNN
+F 2 "~" H 3650 4450 60  0000 C CNN
+F 3 "~" H 3650 4450 60  0000 C CNN
+	1    3650 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L BATTERY Floating2
+U 1 1 563F76CC
+P 4250 4450
+F 0 "Floating2" H 4250 4650 50  0000 C CNN
+F 1 "12" H 4250 4260 50  0000 C CNN
+F 2 "~" H 4250 4450 60  0000 C CNN
+F 3 "~" H 4250 4450 60  0000 C CNN
+	1    4250 4450
+	1    0    0    -1  
+$EndComp
+Connection ~ 3950 4450
+$Comp
+L BATTERY Supply1
+U 1 1 563F77B4
+P 7450 5100
+F 0 "Supply1" H 7450 5300 50  0000 C CNN
+F 1 "12" H 7450 4910 50  0000 C CNN
+F 2 "~" H 7450 5100 60  0000 C CNN
+F 3 "~" H 7450 5100 60  0000 C CNN
+	1    7450 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L BATTERY Supply2
+U 1 1 563F77C3
+P 8050 5100
+F 0 "Supply2" H 8050 5300 50  0000 C CNN
+F 1 "12" H 8050 4910 50  0000 C CNN
+F 2 "~" H 8050 5100 60  0000 C CNN
+F 3 "~" H 8050 5100 60  0000 C CNN
+	1    8050 5100
+	1    0    0    -1  
+$EndComp
+Connection ~ 7750 5100
+Wire Wire Line
+	5950 4600 7750 4600
+Connection ~ 6300 4600
+Wire Wire Line
+	5950 4600 5950 4450
+Wire Wire Line
+	8350 3100 8350 5100
+Wire Wire Line
+	7300 2950 7150 2950
+Wire Wire Line
+	7150 5100 6700 5100
+Wire Wire Line
+	4850 4450 4550 4450
+Wire Wire Line
+	4850 2700 4850 4450
+Wire Wire Line
+	3350 4450 3350 3600
+Wire Wire Line
+	3350 3600 4500 3600
+Text GLabel 8600 3600 2    60   Input ~ 0
+Flight computer
+$Comp
+L LM321 OpAmp1
+U 1 1 563FCBDA
+P 4600 3200
+F 0 "OpAmp1" H 4800 3550 70  0000 C CNN
+F 1 "LM321" H 4800 3450 70  0000 C CNN
+F 2 "" H 4600 3200 60  0000 C CNN
+F 3 "" H 4600 3200 60  0000 C CNN
+	1    4600 3200
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	4500 2800 4500 2700
+Wire Wire Line
+	4500 2700 4850 2700
+Wire Wire Line
+	4700 2800 5450 2800
+Connection ~ 4950 2800
+Wire Wire Line
+	4950 2550 4950 2800
+Wire Wire Line
+	5450 2800 5450 3200
+$Comp
+L LM321 OpAmp2
+U 1 1 563FCD8A
+P 6800 3600
+F 0 "OpAmp2" H 7000 3950 70  0000 C CNN
+F 1 "LM321" H 7000 3850 70  0000 C CNN
+F 2 "" H 6800 3600 60  0000 C CNN
+F 3 "" H 6800 3600 60  0000 C CNN
+	1    6800 3600
+	1    0    0    1   
+$EndComp
+Connection ~ 5500 3700
+Wire Wire Line
+	6300 3950 6300 3700
+Wire Wire Line
+	6300 3700 5500 3700
+Wire Wire Line
+	5950 3500 6300 3500
+Wire Wire Line
+	6300 3500 6300 2950
+Wire Wire Line
+	6700 3200 6700 3100
+Wire Wire Line
+	6700 3100 8350 3100
+Wire Wire Line
+	6900 3200 7650 3200
+Wire Wire Line
+	7300 3200 7300 2950
+Wire Wire Line
+	8600 3600 7650 3600
+Wire Wire Line
+	7650 3600 7650 3200
+Connection ~ 7300 3200
+Wire Wire Line
+	6700 5100 6700 4000
+NoConn ~ 7300 3500
+NoConn ~ 7300 3700
+NoConn ~ 6800 3200
+NoConn ~ 4600 2800
+NoConn ~ 5100 3100
+NoConn ~ 5100 3300
+Wire Wire Line
+	5000 3700 3950 3700
+Connection ~ 3950 3700
+Wire Wire Line
+	6300 4450 6300 4600
+$Comp
+L CONNECTOR P3
+U 1 1 563FED8B
+P 8500 3450
+F 0 "P3" H 8850 3550 70  0000 C CNN
+F 1 "CONNECTOR" H 8850 3350 70  0000 C CNN
+F 2 "~" H 8500 3450 60  0000 C CNN
+F 3 "~" H 8500 3450 60  0000 C CNN
+	1    8500 3450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L CONNECTOR P2
+U 1 1 563FED9A
+P 3400 3000
+F 0 "P2" H 3750 3100 70  0000 C CNN
+F 1 "CONNECTOR" H 3750 2900 70  0000 C CNN
+F 2 "~" H 3400 3000 60  0000 C CNN
+F 3 "~" H 3400 3000 60  0000 C CNN
+	1    3400 3000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L CONNECTOR P1
+U 1 1 563FEDA9
+P 3200 3400
+F 0 "P1" H 3550 3500 70  0000 C CNN
+F 1 "CONNECTOR" H 3550 3300 70  0000 C CNN
+F 2 "~" H 3200 3400 60  0000 C CNN
+F 3 "~" H 3200 3400 60  0000 C CNN
+	1    3200 3400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3400 3000 3400 3100
+Connection ~ 3400 3100
+Wire Wire Line
+	3200 3400 3200 3300
+Connection ~ 3200 3300
+Wire Wire Line
+	8500 3450 8500 3600
+Connection ~ 8500 3600
+Wire Wire Line
+	7750 4600 7750 5100
+$EndSCHEMATC

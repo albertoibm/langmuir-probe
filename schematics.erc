@@ -1,0 +1,21 @@
+ERC report (Mon 09 Nov 2015 12:57:13 AM CET)
+
+***** Sheet /
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (129.54 mm,83.82 mm): Pin 8 (output) of component OpAmp1 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (116.84 mm,71.12 mm): Pin 5 (input) of component OpAmp1 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (129.54 mm,78.74 mm): Pin 1 (output) of component OpAmp1 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (185.42 mm,93.98 mm): Pin 8 (output) of component OpAmp2 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (172.72 mm,81.28 mm): Pin 5 (input) of component OpAmp2 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (185.42 mm,88.90 mm): Pin 1 (output) of component OpAmp2 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (127.00 mm,93.98 mm): Pin 1 (passive) of component R(1-1/n)1 is unconnected.
+ErrType(3): Pin connected to some others pins but no pin to drive it
+    @ (160.02 mm,118.11 mm): Pin 1 (power_in) of component #PWR01 is not driven (Net 18).
+
+ >> Errors ERC: 0

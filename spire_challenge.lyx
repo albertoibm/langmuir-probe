@@ -1,0 +1,578 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass IEEEtran
+\begin_preamble
+% for subfigures/subtables
+\usepackage[caption=false,font=footnotesize]{subfig}
+\end_preamble
+\options journal
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding default
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement tbh
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Your Title"
+\pdf_author "Your Name"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle false
+\pdf_quoted_options "pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false"
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Spire Internship Challenge
+\end_layout
+
+\begin_layout Author
+Alberto
+\begin_inset space ~
+\end_inset
+
+Isaac
+\begin_inset space ~
+\end_inset
+
+Barquín
+\begin_inset space ~
+\end_inset
+
+Murguía
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+abstractname}{Scenario}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+For a future satellite design, we want to outfit a satellite with a Langmuir
+ probe for plasma measurements.
+ Assuming you know the I-V characteristic of the probe, design a system
+ to get sensible measurements from the sensor, and get them to a flight
+ computer.
+ (For the saje of this excercise, you can 
+\begin_inset Quotes eld
+\end_inset
+
+choose
+\begin_inset Quotes erd
+\end_inset
+
+ the flight computer being AVR, ARM, embedded Linux, FPGA, Arduino, ...).
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Paragraph Start
+status open
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Langmuir probe is a device that measures a plasma's characteristics by
+ means of generating a strong electric field that provokes electric currents
+ due to the electrons and ions in the plasma.
+ This currents flow to the satellite's body from the probe and could be
+ in the order of 
+\begin_inset Formula $10^{-6}\text{A}$
+\end_inset
+
+ down to 
+\begin_inset Formula $10^{-8}\text{A}$
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lebreton2006isl"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+A circuit that is able to read those currents was designed and is presented
+ in the file 
+\emph on
+schematics.svg.
+
+\emph default
+ 
+\end_layout
+
+\begin_layout Standard
+The diagrams for fabricating the circuit are presented in the files 
+\emph on
+schematics-F_SilkS.svg
+\emph default
+ and 
+\emph on
+schematics-B_Cu.svg
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+The code for the flight computer is available in the file 
+\emph on
+flight_computer.ino
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+The circuit is explained in the sections 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Current-to-voltage"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Differential-amplifier"
+
+\end_inset
+
+, while section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Flight-computer-software"
+
+\end_inset
+
+ shortly explains what the code does.
+\end_layout
+
+\begin_layout Section
+Current to voltage converter
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Current-to-voltage"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to make the measurement, the first step is to convert the electrical
+ current into a voltage that can be measured by the flight computer.
+ The chosen flight computer is an Arduino board with an ATmega328P microcontroll
+er, which has a 10 bit analog to digital converter capable to read up to
+ 
+\begin_inset Formula $5\text{V}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "arduino"
+
+\end_inset
+
+.
+ This gives us a resolution of 
+\begin_inset Formula $4.88\text{mV}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In order to translate that current coming from the probe into a voltage
+ we use an operational amplifier.
+ The negative input is connected to a bias voltage, because this voltage
+ is what creates the electric field that the probe needs.
+ This bias voltage tends to be extremely high, so the electronics cannot
+ handle it, so we float the amplifier to the bias voltage, as well as its
+ power supply, so that the amplifier only has to handle a few volts.
+ The current flows through 
+\begin_inset Formula $R_{1}$
+\end_inset
+
+ and dropps the voltage from 
+\begin_inset Formula $V_{B}$
+\end_inset
+
+ to 
+\begin_inset Formula $V_{B}-IR_{1}$
+\end_inset
+
+, where 
+\begin_inset Formula $I$
+\end_inset
+
+ is the current to be measured.
+ Thus, 
+\begin_inset Formula $R_{1}$
+\end_inset
+
+ is the conversion factor and is the design parameter to be chosen.
+ If we expect a maximum current of about 
+\begin_inset Formula $2.5\text{·}10^{-6}\text{A}$
+\end_inset
+
+, as shown in Fig.
+ 1 from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lebreton2006isl"
+
+\end_inset
+
+, a resistor of 
+\begin_inset Formula $2\text{M}\Omega$
+\end_inset
+
+ would suffice to convert both the minimum and maximum currents into a voltage
+ within the capabilities of the analog to digital converter.
+ The minimum detectable current would be 
+\begin_inset Formula $2.44\text{·}10^{-9}\text{A}$
+\end_inset
+
+, which is an order of magnitude smaller than the smallest expected current.
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Formula $1\text{M}\Omega$
+\end_inset
+
+ resistor would reduce the range of voltages we could measure, thus having
+ worse resolution, but it would also increase the safety factor to 2, so
+ we could read unexpected spikes uf electrical current up to twice the maximum
+ expected value without saturating the sensor.
+\end_layout
+
+\begin_layout Standard
+An operational amplifier could have parasitic capacitances and a large resistor
+ combined with the capacitor would act as a filter.
+ The parasitic capacitance could be in the order of 
+\begin_inset Formula $10^{-9}\text{F}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dascher1996measuring"
+
+\end_inset
+
+, so if we multiply that value by the resistance we would get a time constant
+ for the charging of the capacitor in the order of 
+\begin_inset Formula $10^{-3}\text{s}$
+\end_inset
+
+, a value low enough that it won't disturb the measurements as long as the
+ frequency needed is lower than that.
+ If that were the case, we would have to reduce the value of 
+\begin_inset Formula $R_{1}$
+\end_inset
+
+ and add a secondary amplifier to compensate for that decrease in gain.
+\end_layout
+
+\begin_layout Section
+Differential amplifier
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Differential-amplifier"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The current to voltage converter has an output voltage too high for the
+ flight computer to read, so we use a differential amplifier to reduce the
+ voltage.
+\end_layout
+
+\begin_layout Standard
+There is two inputs to the differential amplifier.
+ One is 
+\begin_inset Formula $V_{B}-V_{I}$
+\end_inset
+
+, where 
+\begin_inset Formula $V_{I}=IR_{1}$
+\end_inset
+
+.
+ The second input is 
+\begin_inset Formula $V_{B}$
+\end_inset
+
+.
+ We can assign temporary values to the resistors in order to write the output
+ voltage.
+ These values are 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $R(1-1/n)$
+\end_inset
+
+, 
+\begin_inset Formula $R/n$
+\end_inset
+
+ and 
+\begin_inset Formula $R'$
+\end_inset
+
+ and can be seen in the schematic.
+ The output voltage is then:
+\begin_inset Formula 
+\[
+V_{o}=\frac{V_{B}}{n}-R(\frac{V_{B}-V_{I}-\frac{V_{B}}{n}}{R}-\frac{V_{B}}{nR'})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The resistors 
+\begin_inset Formula $R(1-1/n)$
+\end_inset
+
+ and 
+\begin_inset Formula $R/n$
+\end_inset
+
+ create a voltage divider so that the voltage 
+\begin_inset Formula $V_{B}$
+\end_inset
+
+ is scaled to a voltage the amplifier can handle.
+\end_layout
+
+\begin_layout Standard
+We want 
+\begin_inset Formula $V_{o}$
+\end_inset
+
+ to be rid of the bias voltage 
+\begin_inset Formula $V_{B}$
+\end_inset
+
+, so we choose a value for 
+\begin_inset Formula $R'$
+\end_inset
+
+ that cancels out every 
+\begin_inset Formula $V_{B}$
+\end_inset
+
+.
+ That value is 
+\begin_inset Formula $R'=\frac{R}{n-2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can choose a value for 
+\begin_inset Formula $n$
+\end_inset
+
+ high enough so that we can use a wide range for the bias voltage.
+ We need to find a suitable value for 
+\begin_inset Formula $n$
+\end_inset
+
+, though, because the resistors we can buy only come in a certain set of
+ values.
+ We can start by assigning a value for 
+\begin_inset Formula $R$
+\end_inset
+
+ and find a value for 
+\begin_inset Formula $n$
+\end_inset
+
+ that yields a commercial value for another resistor, such as 
+\begin_inset Formula $R/n$
+\end_inset
+
+.
+ If we choose 
+\begin_inset Formula $R=1\text{M}\Omega$
+\end_inset
+
+ and 
+\begin_inset Formula $R/n=910\Omega$
+\end_inset
+
+, we get 
+\begin_inset Formula $n=1098.9$
+\end_inset
+
+, which yields 
+\begin_inset Formula $R(1-1/n)=999089.99909\Omega$
+\end_inset
+
+ and 
+\begin_inset Formula $R'=911.66\Omega$
+\end_inset
+
+.
+ If we compare those two values with the closest commercial values we can
+ find, there is an error of 
+\begin_inset Formula $0.091\%$
+\end_inset
+
+ and 
+\begin_inset Formula $0.1824\%$
+\end_inset
+
+ respectively, well within the 
+\begin_inset Formula $1\%$
+\end_inset
+
+ accuray that we can get from a commercial provider, so we will stick to
+ those values.
+\end_layout
+
+\begin_layout Section
+Flight computer software
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Flight-computer-software"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The flight computer will process the data read by the sensor.
+ The easiest thing to do is store it in an SD card so that the file can
+ be read when there is a ground station available.
+\end_layout
+
+\begin_layout Standard
+The output of the circuit goes into the pin A0, and is read and converted
+ back into a voltage.
+ This value is then sent to a function that writes it in the SD card along
+ with a timestamp.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "spire_challenge"
+options "IEEEtran"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
